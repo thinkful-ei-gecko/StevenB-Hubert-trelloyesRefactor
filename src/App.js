@@ -57,9 +57,6 @@ class App extends Component {
       return list;
     })
 
-    console.log(newCard)
-    console.log(newLists)
-
     this.setState({
       STORE: {
         lists: newLists,
