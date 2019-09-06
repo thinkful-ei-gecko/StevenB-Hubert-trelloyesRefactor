@@ -1,24 +1,44 @@
 import React, { Component } from 'react';
 import List from './List'
 import './App.css';
-import store from './STORE';
+import STORE from './STORE';
+
+function omit(obj, keyToOmit) {
+  return Object.entries(obj).reduce(
+    (newObj, [key, value]) =>
+        key === keyToOmit ? newObj : {...newObj, [key]: value},
+    {}
+  );
+}
 
 class App extends Component {
-
   state = { 
-    store 
+    STORE 
   };
 
+  
   handleDeleteClicked = (id) => {
-    const allCards = Object.entries(this.state.store.allCards).filter(card => card[0] !== id);
-    console.log(allCards)
-    const newCards = Object.fromEntries(allCards); 
+    const newLists = this.state.STORE.lists.map(list => {
+      const filterList = list.cardIds.filter(cardId =>  cardId !== id);
+      list.cardIds = filterList;
+      return list;
+    });
+    console.log(newLists);
+
+    const newCards = omit(this.state.STORE.allCards, id);
+    console.log(newCards)
+    
     this.setState({
-      newCards
+      STORE: {
+        lists: newLists,
+        allCards: newCards
+      }
     });
   }
 
   render() {
+    const store = this.state.STORE;
+
     return (
       <main className='App'>
         <header className='App-header'>
