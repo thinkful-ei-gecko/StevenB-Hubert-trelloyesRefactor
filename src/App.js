@@ -10,10 +10,11 @@ class App extends Component {
   };
 
   handleDeleteClicked = (id) => {
-    const allCards = Object.entries(this.state.store.allCards).filter(card => card.id !== id);
+    const allCards = Object.entries(this.state.store.allCards).filter(card => card[0] !== id);
     console.log(allCards)
+    const newCards = Object.fromEntries(allCards); 
     this.setState({
-      allCards
+      newCards
     });
   }
 
