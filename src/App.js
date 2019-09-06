@@ -7,8 +7,15 @@ class App extends Component {
 
   state = { store }
 
+  handleDeleteClicked = (id) => {
+    const allCards = store.allCards.filter(allCard => allCard.id !== id)
+    console.log(allCards)
+   /*  this.setState({
+      allCards
+    }); */
+  }
+
   render() {
-    console.log(store);
     return (
       <main className='App'>
         <header className='App-header'>
@@ -20,6 +27,7 @@ class App extends Component {
               key={list.id}
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
+              deleteWasClicked={(id) => this.handleDeleteClicked(id)}
             />
           ))}
         </div>
