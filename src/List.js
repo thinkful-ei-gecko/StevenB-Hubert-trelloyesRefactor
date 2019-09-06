@@ -21,6 +21,7 @@ export default function List(props) {
         <button
           type='button'
           className='List-add-button'
+          onClick={() => props.addRandomCardClicked(props.id)}
         >
           + Add Random Card
         </button>
@@ -28,3 +29,4 @@ export default function List(props) {
     </section>
   )
 }
+
