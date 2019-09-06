@@ -5,14 +5,16 @@ import store from './STORE';
 
 class App extends Component {
 
-  state = { store }
+  state = { 
+    store 
+  };
 
   handleDeleteClicked = (id) => {
-    const allCards = store.allCards.filter(allCard => allCard.id !== id)
+    const allCards = Object.entries(this.state.store.allCards).filter(card => card.id !== id);
     console.log(allCards)
-   /*  this.setState({
+    this.setState({
       allCards
-    }); */
+    });
   }
 
   render() {
